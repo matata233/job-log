@@ -1,0 +1,8 @@
+.ant-dropdown-menu-submenu
+  > .ant-dropdown-menu-submenu-title
+  .ant-dropdown-menu-submenu-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}

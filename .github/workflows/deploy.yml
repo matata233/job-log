@@ -1,0 +1,73 @@
+### 
+### The following code is an adaptation from assignment 5 and workshop 6.
+### 
+name: Deployment
+
+on:
+  push:
+    branches:
+      - deploy # Triggers on push to deploy branch 
+
+jobs:
+  # In case if there is any test will be added
+  # test-frontend:
+  #   runs-on: ubuntu-latest
+    
+  #   defaults:
+  #     run:
+  #       working-directory: assignment4/frontend
+        
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v4.0.3
+  #       with:
+  #         node-version: '20.11.0'
+
+  #     - name: Install dependencies
+  #       run: npm install
+
+  #     - name: Run tests
+  #       run: npm test
+
+  # In case if there is any test will be added
+  # test-backend:
+  #   runs-on: ubuntu-latest
+    
+  #   defaults:
+  #     run:
+  #       working-directory: assignment4/backend
+        
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v4.0.3
+  #       with:
+  #         node-version: '20.11.0'
+
+  #     - name: Install dependencies
+  #       run: npm install
+
+  #     - name: Run tests
+  #       run: npm test
+
+  deploy:
+  #  needs: test-backend, test-frontend
+    runs-on: ubuntu-latest
+    
+    steps:
+       - name: Deploy Backend to Render
+         env:
+           deploy_back_url: ${{ secrets.RENDER_DEPLOY_BACK_HOOK_URL }}
+         run: |
+           curl "$deploy_back_url"
+
+       - name: Deploy Frontend to Render
+         env:
+           deploy_front_url: ${{ secrets.RENDER_DEPLOY_FRONT_HOOK_URL }}
+         run: |
+           curl "$deploy_front_url"

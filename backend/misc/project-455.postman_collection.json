@@ -1,0 +1,768 @@
+{
+	"info": {
+		"_postman_id": "9b8f3197-123b-4b8f-ad4a-55da616a9774",
+		"name": "project-455",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23563560"
+	},
+	"item": [
+		{
+			"name": "user api",
+			"item": [
+				{
+					"name": "Get user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/666fadb6abb7c916eb332394",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"666fadb6abb7c916eb332394"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"ducky5\",\n    \"password\": \"meow\",\n    \"firstName\": \"oooo\",\n    \"lastName\": \"xxxx\",\n    \"email\": \"abc@mail.com\",\n    \"securityQuestion\": \"who\",\n    \"securityAnswer\": \"biko\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"ducky5\",\n    \"password\": \"meow\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Update user by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"ducky4\",\n    \"password\": \"meow2\",\n    \"securityQuestion\": \"who\",\n    \"securityAnswer\": \"biko\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/66857feabf92ae8e080bcc07",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"66857feabf92ae8e080bcc07"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by id (NOT implemented)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "job board api",
+			"item": [
+				{
+					"name": "get all by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/jobboards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobboards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/jobboards/6685d6bb253ac1cba45b41e1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobboards",
+								"6685d6bb253ac1cba45b41e1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create job board",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"jobboard2\",\r\n    \"description\": \"test2\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/jobboards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobboards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update job board",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"jobboard1233\",\r\n    \"description\": \"test1updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/jobboards/6685d6bb253ac1cba45b41e1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobboards",
+								"6685d6bb253ac1cba45b41e1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update job board status (rename a status)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldStatus\": {\r\n        \"id\": \"66908c332acee9ef37b19e60\",\r\n        \"statusName\": \"321\"\r\n    },\r\n    \"newStatus\": {\r\n         \"statusName\": \"123123\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/jobboards/668f13f0fd844e1730d7318b/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobboards",
+								"668f13f0fd844e1730d7318b",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update job board status (remove a status)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"oldStatus\": {\r\n        \"statusName\": \"Interview\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/jobboards/668f13f0fd844e1730d7318b/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobboards",
+								"668f13f0fd844e1730d7318b",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete job board (archive all related job post)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/jobboards/6685df73d19e18427598966c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobboards",
+								"6685df73d19e18427598966c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "job post api",
+			"item": [
+				{
+					"name": "get by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/jobposts/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobposts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by user id with job board id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/jobposts?jobBoardId=668f13f0fd844e1730d7318b",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobposts"
+							],
+							"query": [
+								{
+									"key": "jobBoardId",
+									"value": "668f13f0fd844e1730d7318b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "create job post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"jobBoardId\":\"668f13f0fd844e1730d7318b\",\r\n   \"title\":\"string666\",\r\n   \"company\":\"string\",\r\n   \"url\":\"string\",\r\n   \"location\":\"string\",\r\n   \"salary\":\"string\",\r\n   \"deadline\":\"2024-07-03\",\r\n   \"description\":\"string\",\r\n   \"requirements\":\"string\",\r\n   \"status\":{\r\n                \"_id\": \"668f13f0fd844e1730d7318d\",\r\n                \"statusName\": \"Applied\"\r\n            }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/jobposts/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobposts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update job post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobBoardId\": \"6688e9e05ad07151f27441fe\",\r\n    \"title\": \"string\",\r\n    \"company\": \"string\",\r\n    \"url\": \"string\",\r\n    \"location\": \"string\",\r\n    \"salary\": \"666\",\r\n    \"deadline\": \"2024-07-03T00:00:00.000Z\",\r\n    \"description\": \"string\",\r\n    \"requirements\": \"string\",\r\n    \"isArchived\": false,\r\n    \"createdAt\": \"2024-07-03T23:20:49.097Z\",\r\n    \"updatedAt\": \"2024-07-03T23:25:13.153Z\",\r\n    \"__v\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/jobposts/6685dcd1d19e184275989649",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobposts",
+								"6685dcd1d19e184275989649"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete job post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/jobposts/6685dcd1d19e184275989649",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jobposts",
+								"6685dcd1d19e184275989649"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "file api",
+			"item": [
+				{
+					"name": "get all by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/files",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all by user id with category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/files?category=test233",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"files"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "test233"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all by user id with job post id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/files?jobPostId=669306e38500ffaa078322d6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"files"
+							],
+							"query": [
+								{
+									"key": "jobPostId",
+									"value": "669306e38500ffaa078322d6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all by user id with job post id && category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/files?jobPostId=669306e38500ffaa078322d6&category=test233",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"files"
+							],
+							"query": [
+								{
+									"key": "jobPostId",
+									"value": "669306e38500ffaa078322d6"
+								},
+								{
+									"key": "category",
+									"value": "test233"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/files/123",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"files",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/eriol/Desktop/summer2024/CPSC455/project/backend/misc/test-upload.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/files",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update file (og name, job post id, category only)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobPostId\": \"66906955df76fdc577fdc82b\",\r\n    \"originalFileName\": \"test-upload-update.pdf\",\r\n    \"storedFileName\": \"fc8d2b95-0d51-4aa1-a05b-0acae8f521e2.pdf\",\r\n    \"fileType\": \"application/pdf\",\r\n    \"fileUrl\": \"https://job-log-bucket.s3.us-west-2.amazonaws.com/fc8d2b95-0d51-4aa1-a05b-0acae8f521e2.pdf\",\r\n    \"createdAt\": \"2024-07-05T20:37:09.006Z\",\r\n    \"updatedAt\": \"2024-07-05T20:37:09.006Z\",\r\n    \"__v\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/files/6688535088da797bfedb47ba",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"files",
+								"6688535088da797bfedb47ba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a file (from s3 and db)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/files/66885975766d86f9a81d5284",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"files",
+								"66885975766d86f9a81d5284"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test api",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiZmlyc3ROYW1lIjoidXNlckYiLCJsYXN0TmFtZSI6InVzZXJMIiwic2VjdXJpdHlRdWVzdGlvbiI6IndoYXQgaXMgbXkgY2F0J3MgbmFtZSIsImlhdCI6MTcyMDkxMTExMywiZXhwIjoxNzIwOTk3NTEzfQ.Ix2Ut96K3G8JOq6Z0_Zu1p6_mQgmYV_jPEB9_CoUIRs",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1",
+			"disabled": true
+		},
+		{
+			"key": "base_url",
+			"value": "http://localhost:54321/job-log/api/v1"
+		}
+	]
+}

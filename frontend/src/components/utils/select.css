@@ -1,0 +1,8 @@
+.ant-select-selector {
+  @apply h-fit w-full rounded-md border border-gray-200 py-[1px] font-poppins text-base dark:border-slate-700 dark:bg-dark-bgColor-300 dark:text-gray-300 !important;
+}
+
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:focus {
+  @apply ring-2 ring-light-purple-200 dark:ring-slate-700 !important;
+}
